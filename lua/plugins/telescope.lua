@@ -8,6 +8,17 @@ local M = {
     config = function()
         require("telescope").setup {
             extensions = {
+                project = {
+                    base_dirs = {
+                        { '~/.config/nvim' },               -- neovim configuration
+                        { '~/Github', max_depth = 2 },      -- github project
+                        { '~/Project/', max_depth = 2 },     -- personal project
+                    },
+                    hidden_files = true,
+                    order_by = "asc",
+                    search_by = "title",
+                    sync_with_nvim_tree = true,
+                },
                 fzf = {
                     fuzzy = true,                    -- false will only do exact matching
                     override_generic_sorter = true,  -- override the generic sorter
@@ -17,7 +28,7 @@ local M = {
                 }
             }
         }
-
+        
         require("telescope").load_extension("fzf")
         require("telescope").load_extension("project")
 
@@ -25,7 +36,7 @@ local M = {
         vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
         vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
         vim.keymap.set('n', '<leader><space>', builtin.buffers, {})
-        vim.keymap.set('n', '<leader>fp', ":lua require'telescope'.extensions.project.project{}<CR>", { noremap = true, silent = true})
+        vim.keymap.set('n', '<leader>fp', ":lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>", { noremap = true, silent = true})
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
     end
 }
