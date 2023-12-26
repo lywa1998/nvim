@@ -12,7 +12,7 @@ local M = {
                     base_dirs = {
                         { '~/.config/nvim' },               -- neovim configuration
                         { '~/Github', max_depth = 2 },      -- github project
-                        { '~/Project/', max_depth = 2 },     -- personal project
+                        { '~/Project', max_depth = 2 },     -- personal project
                     },
                     hidden_files = true,
                     order_by = "asc",
