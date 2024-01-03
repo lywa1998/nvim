@@ -1,3 +1,5 @@
 require("options")
 require("keymaps")
-require("Lazy")
+if not vim.g.vscode then
+    require("Lazy")
+end
