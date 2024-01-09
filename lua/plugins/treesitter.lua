@@ -7,7 +7,7 @@ function M.config()
     local configs = require "nvim-treesitter.configs"
 
     configs.setup {
-        ensure_installed = { "c", "cmake", "cpp", "go", "lua", "python", "rust" },
+        ensure_installed = { "c", "cmake", "cpp", "go", "lua", "rust" },
 
         highlight = {
             enable = true,
