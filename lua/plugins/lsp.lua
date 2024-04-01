@@ -36,6 +36,7 @@ function M.config()
         )
     end
 
+
     -- Enable lsconfig --
     -- Use LspAttach autocommand to only map the following keys
     -- after the language server attaches to the current buffer
@@ -56,29 +57,22 @@ function M.config()
             -- See `:help vim.lsp.*` for documentation on any of the below functions
             local opts = { buffer = args.buf }
             -- We need a specific threat for the "term_toggle", it must be a global mapping, not a buffer mapping.
-            vim.keymap.set({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>",
-                { noremap = true, silent = true })
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
             vim.keymap.set('n', 'gd', require "telescope.builtin".lsp_definitions, opts)
-            vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
-            vim.keymap.set('n', 'K', "<cmd>Lspsaga hover_doc<CR>", opts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
             vim.keymap.set('n', '<leader>gi', require "telescope.builtin".lsp_implementations, opts)
             vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-            vim.keymap.set('n', '<leader>da', require "telescope.builtin".diagnostics, opts)
-            vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-            vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-            vim.keymap.set('n', '<space>wl', function()
-                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end, opts)
+
+            -- diagnostic
+            vim.keymap.set('n', '<leader>ds', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages'})
+            vim.keymap.set('n', '<leader>dl', require "telescope.builtin".diagnostics, opts)
+
             vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-            vim.keymap.set('n', '<space>rn', "<cmd>Lspsaga rename ++project<CR>", opts)
-            vim.keymap.set({ 'n', 'v' }, '<leader>ca', "<cmd>Lspsaga code_action<CR>", opts)
+            vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
             vim.keymap.set('n', 'gr', require "telescope.builtin".lsp_references, opts)
-            -- vim.keymap.set('n', '<space>f', function()
-            --     vim.lsp.buf.format { async = true }
-            -- end, opts)
+            vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts) -- format code
         end,
     })
-end    
+end
 
 return M

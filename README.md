@@ -2,7 +2,7 @@
 
 ## Install 
 ```bash
-git clone https:://github.com/lywa1998/nvim.git ~/.config/nvim
+git clone https://github.com/lywa1998/nvim.git ~/.config/nvim
 ```
 
 ## Screenshot
