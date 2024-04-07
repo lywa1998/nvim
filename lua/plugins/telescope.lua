@@ -18,7 +18,7 @@ local M = {
                         { '~/Project', max_depth = 2 },     -- personal project
                     },
                     hidden_files = true,
-                    order_by = "asc",
+                    order_by = "recent",
                     search_by = "title",
                     sync_with_nvim_tree = true,
                 },

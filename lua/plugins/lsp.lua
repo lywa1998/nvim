@@ -36,6 +36,7 @@ function M.config()
         )
     end
 
+
     -- Enable lsconfig --
     -- Use LspAttach autocommand to only map the following keys
     -- after the language server attaches to the current buffer
@@ -69,7 +70,7 @@ function M.config()
             vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
             vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
             vim.keymap.set('n', 'gr', require "telescope.builtin".lsp_references, opts)
-            vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts)
+            vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts) -- format code
         end,
     })
 end
