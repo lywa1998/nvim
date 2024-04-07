@@ -7,6 +7,9 @@ local M = {
     },
     config = function()
         require("telescope").setup {
+            defaults = {
+                file_ignore_patterns = { "node_modules", "target", ".git", ".cargo", ".rustup", ".venv", ".config", ".vim" },
+            },
             extensions = {
                 project = {
                     base_dirs = {
@@ -28,7 +31,7 @@ local M = {
                 }
             }
         }
-        
+
         require("telescope").load_extension("fzf")
         require("telescope").load_extension("project")
 
