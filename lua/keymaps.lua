@@ -52,7 +52,7 @@ keymap("v", ">", ">gv", opts)
 
 -- Plugins --
 
--- NvimTree
+-- Yazi
 keymap("n", "<leader>e", "<cmd> lua require('yazi').yazi()<CR>", opts)
 
 -- Telescope

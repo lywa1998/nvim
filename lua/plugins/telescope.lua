@@ -11,8 +11,8 @@ local M = {
                 project = {
                     base_dirs = {
                         { '~/.config/nvim' },               -- neovim configuration
-                        { '~/Github', max_depth = 2 },      -- github project
-                        { '~/Project', max_depth = 2 },     -- personal project
+                        -- { '~/Github', max_depth = 2 },      -- github project
+                        -- { '~/Project', max_depth = 2 },     -- personal project
                     },
                     hidden_files = true,
                     order_by = "recent",

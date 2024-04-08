@@ -23,7 +23,6 @@ function M.config()
                 }
             }
         },
-        gopls = {},
         pyright = {},
         clangd = {},
         tinymist = {
