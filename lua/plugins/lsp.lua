@@ -11,15 +11,15 @@ local M = {
 
 function M.config()
     local servers = {
-        lua_ls = {},
-        gopls = {},
-        typst_lsp = {
-            settings = {
-                exportPdf = "onType"
-            }
-        },
-        pyright = {},
-        clangd = {},
+        -- lua_ls = {},
+        -- gopls = {},
+        -- typst_lsp = {
+        --     settings = {
+        --         exportPdf = "onType"
+        --     }
+        -- },
+        -- pyright = {},
+        -- clangd = {},
     }
     require("mason").setup()
     require("mason-lspconfig").setup {
@@ -44,11 +44,7 @@ function M.config()
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(args)
             -- Enable native inlay hints
-            -- ref: https://vinnymeller.com/posts/neovim_nightly_inlay_hints/
-            local client = vim.lsp.get_client_by_id(args.data.client_id)
-            if client.server_capabilities.inlayHintProvider then
-                vim.lsp.inlay_hint.enable(args.buf, true)
-            end
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 
             -- Enable completion triggered by <c-x><c-o>
             vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
