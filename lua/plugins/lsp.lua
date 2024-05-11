@@ -60,13 +60,13 @@ function M.config()
             vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 
             -- diagnostic
-            vim.keymap.set('n', '<leader>ds', vim.diagnostic.open_float, { desc = 'Show diagnostic on float window' })
-            vim.keymap.set('n', '<leader>dl', require "telescope.builtin".diagnostics, opts)
+            vim.keymap.set('n', '<leader>ds', vim.diagnostic.open_float, { buffer = args.buf, desc = 'Show diagnostic of current line' })
+            vim.keymap.set('n', '<leader>dl', require "telescope.builtin".diagnostics, { buffer = args.buf, desc = "Show diagnostics of current project" })
 
             vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
             vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
             vim.keymap.set('n', 'gr', require "telescope.builtin".lsp_references, opts)
-            vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts) -- format code
+            vim.keymap.set('n', '<space>cf', vim.lsp.buf.format, { buffer = args.buf, desc = "Format Code" }) -- format code
         end,
     })
 end
