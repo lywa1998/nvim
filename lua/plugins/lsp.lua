@@ -28,22 +28,6 @@ function M.config()
             }
         }
     }
-    -- Autocmds are automatically loaded on the VeryLazy event
-    -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
-    -- Add any additional autocmds here
-    vim.api.nvim_create_autocmd(
-        {
-            "BufNewFile",
-            "BufRead",
-        },
-        {
-            pattern = "*.typ",
-            callback = function()
-                local buf = vim.api.nvim_get_current_buf()
-                vim.api.nvim_buf_set_option(buf, "filetype", "typst")
-            end
-        }
-    )
     require("mason").setup()
     require("mason-lspconfig").setup {
         ensure_installed = vim.tbl_keys(servers),
@@ -59,15 +43,29 @@ function M.config()
         )
     end
 
+    -- Autocmds are automatically loaded on the VeryLazy event
+    -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+    -- Add any additional autocmds here
+    vim.api.nvim_create_autocmd(
+        {
+            "BufNewFile",
+            "BufRead",
+        },
+        {
+            pattern = "*.typ",
+            callback = function()
+                local buf = vim.api.nvim_get_current_buf()
+                vim.api.nvim_set_option_value("filetype", "typst", buf)
+            end
+        }
+    )
+
     -- Enable lsconfig --
     -- Use LspAttach autocommand to only map the following keys
     -- after the language server attaches to the current buffer
     vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(args)
-            -- local bufnr = args.buf
-            -- local client = vim.lsp.get_client_by_id(args.data.client_id)
-
             -- Enable lsp completion
             -- vim.lsp.completion.enable(true, args.data.client_id, args.buf, {autotrigger=true})
             -- Enable native inlay hints
@@ -96,8 +94,6 @@ function M.config()
             vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts) -- format code
         end,
     })
-
-    
 end
 
 return M
