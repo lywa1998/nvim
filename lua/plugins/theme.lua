@@ -1,15 +1,12 @@
 local M = {
-    "folke/tokyonight.nvim",
+    "olimorris/onedarkpro.nvim",
     lazy = false,   -- make sure load this during startup
-    priority = 1000,    -- make sure to load this before all the other start plugins
-    dependencies = {
-        "nvim-tree/nvim-web-devicons",
-    },
+    priority = 1000    -- make sure to load this before all the other start plugins
 }
 
 
 function M.config()
-    vim.cmd[[colorscheme tokyonight-night]]
+    vim.cmd.colorscheme('onedark')
 end
 
 return M
