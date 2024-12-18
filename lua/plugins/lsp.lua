@@ -4,15 +4,25 @@ local M = {
     lazy = false,
     event = { BufReadPre },
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
+        'saghen/blink.cmp',
+        -- "hrsh7th/cmp-nvim-lsp",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim"
     }
 }
 
+
 function M.config()
     local servers = {
-        lua_ls = {},
+        lua_ls = {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {'vim'}
+                    }
+                }
+            }
+        },
         gopls = {},
         pyright = {},
         clangd = {},
@@ -37,7 +47,7 @@ function M.config()
         require("lspconfig")[server].setup(
             vim.tbl_deep_extend(
                 "keep",
-                { on_attach = on_attach, capabilities = require("cmp_nvim_lsp").default_capabilities() },
+                { on_attach = on_attach, capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities) },
                 config
             )
         )
