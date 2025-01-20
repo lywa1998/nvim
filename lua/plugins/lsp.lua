@@ -2,7 +2,7 @@ local M = {
     "neovim/nvim-lspconfig",
     version = "0.1.8",
     lazy = false,
-    event = { BufReadPre },
+    -- event = { BufReadPre },
     dependencies = {
         'saghen/blink.cmp',
         -- "hrsh7th/cmp-nvim-lsp",
@@ -52,24 +52,7 @@ function M.config()
             )
         )
     end
-
-    -- Autocmds are automatically loaded on the VeryLazy event
-    -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
-    -- Add any additional autocmds here
-    vim.api.nvim_create_autocmd(
-        {
-            "BufNewFile",
-            "BufRead",
-        },
-        {
-            pattern = "*.typ",
-            callback = function()
-                local buf = vim.api.nvim_get_current_buf()
-                vim.api.nvim_set_option_value("filetype", "typst", buf)
-            end
-        }
-    )
-
+    
     -- Enable lsconfig --
     -- Use LspAttach autocommand to only map the following keys
     -- after the language server attaches to the current buffer

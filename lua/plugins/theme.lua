@@ -6,7 +6,12 @@ local M = {
 
 
 function M.config()
-    vim.cmd.colorscheme('onedark')
+    require("onedarkpro").setup({
+        options = {
+            transparency = true
+        }
+    })
+    vim.cmd("colorscheme onedark")
 end
 
 return M

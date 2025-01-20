@@ -7,7 +7,7 @@ function M.config()
     local configs = require "nvim-treesitter.configs"
 
     configs.setup {
-        ensure_installed = { "cpp", "markdown", "vim", "vimdoc", "go", "lua", "rust" },
+        ensure_installed = { "cpp", "markdown", "vim", "vimdoc", "typst", "go", "lua", "rust" },
 
         highlight = { enable = true },
         autopairs = { enable = true },
